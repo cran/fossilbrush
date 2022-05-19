@@ -14,11 +14,11 @@
 #' that the returned vectors of numeric ages do not contain NAs.
 #' @param x A data.frame containing, minimally two columns
 #' corresponding respectively to the first and last intervals
-#' of the data. Missing values in the second column will be
-#' infilled using the corresponding value in the second column
-#' following PBDB formatting where only the first interval
-#' column is recorded when a datapoint lies solely within that
-#' interval.
+#' of the data. Values should only be present in the second column
+#' where the minimum age interval for a row is different to the
+#' maximum age interval. Otherwise the values should be NA and the
+#' ages returned will be based on the interval specified in the
+#' first column, in line with PBDB formatting.
 #' @param srt A character of length 1 specifing the column name
 #' of the first interval field in x
 #' @param end A character of length 1 specifing the column name
@@ -67,8 +67,10 @@ GTS2020_scale <- function(x, srt = "early_interval", end = "late_interval", max_
   if(!end %in% colnames(x)) {
     stop("The supplied value of end is not a column name in x")
   }
-  if(!is.character(x[,end])) {
-    stop("The value of end does not refer to a character class column in x")
+  if(!all(is.na(x[,end]))) {
+    if(!is.character(x[,end])) {
+      stop("The value of end does not refer to a character class column in x")
+    }
   }
   if(is.null(max_ma) != is.null(min_ma)) {
     stop("If supplying the original ages, both max_ma and min_ma must be specified")

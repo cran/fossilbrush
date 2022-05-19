@@ -54,7 +54,7 @@ age_ranges <- function(data, taxonomy = "genus", srt = "max_ma", end = "min_ma",
   if(length(mode) > 1) {
     stop("Mode must be one of the following: max, min, bounds")
   }
-  if(class(data[,srt]) != "numeric" | class(data[,end]) != "numeric") {
+  if(!is.numeric(data[,srt]) | !is.numeric(data[,end])) {
     stop("Columns srt and end must be numeric")
   }
   if(any(is.na(data[,srt])) | any(is.na(data[,end]))) {

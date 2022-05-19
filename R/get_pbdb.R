@@ -153,7 +153,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   }
   if(!is.null(pres)) {
     pres <- na.omit(unique(pres))
-    if(class(pres) != "character") {
+    if(!is.character(pres)) {
       stop("Pres should be one of the following: regular, form, ichno, 'form,ichno'")
     }
     if(length(pres) != 0) {
@@ -169,7 +169,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   }
   if(!is.null(idqual)) {
     idqual <- na.omit(unique(idqual))
-    if(class(idqual) != "character") {
+    if(!is.character(idqual)) {
       stop("Idqual should be one of the following: certain, genus_certain, uncertain, new")
     }
     if(length(idqual) != 0) {
@@ -254,7 +254,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   #######################
   # set up fields argument if provided
   if(!is.null(fields)) {
-    if((class(fields) != "character")) {
+    if(!is.character(fields)) {
       stop("Fields must be a character vector with one or more elements corresponding to PBDB vocabulary")
     }
     fields <- na.omit(unique(fields))
@@ -280,7 +280,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   # set up area argument if provided
   if(!is.null(area)) {
     area <- na.omit(area)
-    if(!class(area) %in% c("character", "numeric") | (is.character(interval) & length(grep("[0-9]", interval)) != 0)) {
+    if(!class(area) %in% c("character", "numeric") | length(grep("[0-9]", interval)) != 0) {
       stop("Area must be a numeric of length four with decimal degree values in order of min longitude, max longitude,
            min latitude, max latitude (prime meridian = 0 longitude, equator = 0 latitude), or a character vector of one
            or more valid country names, their ISO2 abbreviations, and/or one or more of the following continental regions:
@@ -366,7 +366,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   # set up lithology argument if provided
   if(!is.null(litho)) {
     litho <- na.omit(unique(litho))
-    if(class(area) != "character") {
+    if(!is.character(litho)) {
       stop("Lithology must be a character vector of one or more of the following elements:
            siliclastic, mixed, carbonate, evaporite, organic, chemical, volcanic, metasedimentary,
            metamorphic, other or unknown")
@@ -388,7 +388,7 @@ get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "
   # set up environment argument if provided
   if(!is.null(env)) {
     env <- na.omit(unique(env))
-    if(class(env) != "character") {
+    if(!is.character(env)) {
       stop("Environment must be a character vector of one or more of the following elements (ignoring bracketed phrases):
            terrestrial, any marine, carbonate, siliciclastic, unknown, lacustrine, fluvial, karst,
            terrother (other terrestrial), marginal (marginal marine), reef, stshallow (shallow subtidal),

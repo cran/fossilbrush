@@ -55,7 +55,7 @@ densify <- function(x, rank = "genus", srt = "max_ma", end = "min_ma", step = 1,
   if(!all(c(rank, srt, end) %in% colnames(x))) {
     stop("One or more of rank, srt or end are not colnames in data")
   }
-  if(class(step) != "numeric" | class(density) != "numeric") {
+  if(!is.numeric(step) | !is.numeric(density)) {
     stop("Step and density must be numeric")
   }
   if(length(step) > 1) {
@@ -70,7 +70,7 @@ densify <- function(x, rank = "genus", srt = "max_ma", end = "min_ma", step = 1,
   if(density >= step) {
     warning("Density should ideally be smaller than step")
   }
-  if(class(x[,srt]) != "numeric" | class(x[,end]) != "numeric") {
+  if(!is.numeric(x[,srt]) | !is.numeric(x[,end])) {
     stop("Columns srt and end must be numeric")
   }
   if(any(x[,srt] < x[,end])) {

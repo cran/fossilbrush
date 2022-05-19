@@ -74,7 +74,7 @@ spell_check <- function(x, terms = NULL, groups = NULL, jw = 0.1, str = 1, str2 
     if(!is.vector(terms)) {
       stop("If x is not specified, then terms must be a character vector")
     }
-    if(class(terms) != "character") {
+    if(is.character(terms)) {
       stop("Terms must be of class character")
     }
     if(is.null(groups)) {
@@ -91,7 +91,7 @@ spell_check <- function(x, terms = NULL, groups = NULL, jw = 0.1, str = 1, str2 
       if(is.null(terms) || is.null(groups)) {
         stop("If x contains more than two columns, terms and groups must be specified")
       }
-      if(class(groups) != "character" && class(terms) != "character") {
+      if(!is.character(groups) && !is.character(terms)) {
         stop("terms and groups should both be character vectors of length 1")
       }
       if(length(terms) > 1) {

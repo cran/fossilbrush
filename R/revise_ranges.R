@@ -105,8 +105,7 @@ revise_ranges <- function(x, y, assemblage = "collection_no", srt = "max_ma", en
   if(!all(c(taxon, srt, end) %in% colnames(y))) {
     stop("Arguments taxon, srt and end must all be the same column names in x and y")
   }
-  if(!all(class(x[,srt]) == "numeric", class(x[,end]) == "numeric",
-          class(y[,srt]) == "numeric", class(y[,end]) == "numeric")) {
+  if(!all(is.numeric(x[,srt]), is.numeric(x[,end]), is.numeric(y[,srt]), is.numeric(y[,end]))) {
     stop("srt and end columns in x and y must all be numeric")
   }
   if(any(x[,srt] < x[,end])) {
@@ -115,7 +114,7 @@ revise_ranges <- function(x, y, assemblage = "collection_no", srt = "max_ma", en
   if(any(y[,srt] < y[,end])) {
     stop("One or more maximum ages in y are smaller than their corresponding minimum ages")
   }
-  if(length(prop) != 1 | class(prop) != "numeric") {
+  if(length(prop) != 1 | !is.numeric(prop)) {
     stop("prop must be a numeric of length 1")
   }
   if(prop > 1 | prop < 0) {

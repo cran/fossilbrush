@@ -9,6 +9,7 @@ flag_ranges(
   y = NULL,
   xcols = c("genus", "max_ma", "min_ma"),
   ycols = NULL,
+  flag.diff = 5,
   verbose = TRUE
 )
 }
@@ -29,13 +30,22 @@ three for the same column types as in xcols, but for
 dataset y. This is useful if the column names differ
 between the datasets}
 
+\item{flag.diff}{A vector of thresholds, given in millions
+of years which will be used to flag discrepancies
+between occurrence FADs and LADs with respect to the
+reference range. This is a convenience parameter so that
+occurrences with large discrepancies can be quickly
+identified. Multiple thresholds can be supplied}
+
 \item{verbose}{A logical of length one determining if
 the flagging progress should be reported to the console}
 }
 \value{
-A list of two dataframes, the first recording
+A list of two data.frames, the first recording
 overall error statistics, the second recording error
-types for each element of x
+types for each element of x. In the second data.frame,
+FAD or LAD differences in excess of the supplied threshold(s)
+are marked with 1, otherwise 0
 }
 \description{
 Function to compare stratigraphic ranges in x to a

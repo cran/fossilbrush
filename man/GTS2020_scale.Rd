@@ -16,11 +16,11 @@ GTS2020_scale(
 \arguments{
 \item{x}{A data.frame containing, minimally two columns
 corresponding respectively to the first and last intervals
-of the data. Missing values in the second column will be
-infilled using the corresponding value in the second column
-following PBDB formatting where only the first interval
-column is recorded when a datapoint lies solely within that
-interval.}
+of the data. Values should only be present in the second column
+where the minimum age interval for a row is different to the
+maximum age interval. Otherwise the values should be NA and the
+ages returned will be based on the interval specified in the
+first column, in line with PBDB formatting.}
 
 \item{srt}{A character of length 1 specifing the column name
 of the first interval field in x}

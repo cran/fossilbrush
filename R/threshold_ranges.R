@@ -83,10 +83,10 @@ threshold_ranges <- function(x, rank = "genus", srt = "max_ma", end = "min_ma", 
   if(!all(c(rank, srt, end) %in% colnames(x))) {
     stop("One or more of rank, srt or end are not colnames in data")
   }
-  if(class(x[,rank]) != "character") {
+  if(!is.character(x[,rank])) {
     stop("Column rank must be character")
   }
-  if(class(x[,srt]) != "numeric" | class(x[,end]) != "numeric") {
+  if(!is.numeric(x[,srt]) | !is.numeric(x[,end])) {
     stop("Columns srt and end must be numeric")
   }
   if(any(c(is.na(x[,srt]), is.na(x[,end])))) {
