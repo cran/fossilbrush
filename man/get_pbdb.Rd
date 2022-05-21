@@ -133,5 +133,5 @@ chunks to better track the download progress.
 }
 \examples{
 # download Triassic dinosaurs (wait time set to meet CRAN example requirement)
-tdinos <- get_pbdb(taxon = "Dinosauria", interval = "Triassic", wait = 499)
+tdinos <- fossilbrush:::get_pbdb(taxon = "Dinosauria", interval = "Triassic", wait = 499)
 }

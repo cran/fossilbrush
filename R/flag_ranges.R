@@ -56,10 +56,10 @@
 #' set.seed(1)
 #' brachios <- brachios[sample(1:nrow(brachios), 1000),]
 #' # update brachios to GTS2020 to match Sepkoski
-#' brachios <- GTS2020_scale(brachios, srt = "early_interval", end = "late_interval",
+#' brachios <- chrono_scale(brachios, srt = "early_interval", end = "late_interval",
 #'                           max_ma = "max_ma", min_ma = "min_ma", verbose = FALSE)
-#' brachios$max_ma <- brachios$GTS_FAD
-#' brachios$min_ma <- brachios$GTS_LAD
+#' brachios$max_ma <- brachios$newFAD
+#' brachios$min_ma <- brachios$newLAD
 #' # drop occurrences with older LADs than FADs
 #' brachios <- brachios[brachios$max_ma > brachios$min_ma,]
 #' # trim the Sepkoski Compendium to the relevant entries

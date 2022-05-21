@@ -1,6 +1,6 @@
 Package: fossilbrush
 Title: Automated Cleaning of Fossil Occurrence Data
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: 
     c(person(given = "Joe",
              family = "Flannery-Sutherland",
@@ -29,7 +29,7 @@ VignetteBuilder: knitr
 URL: https://github.com/jf15558/fossilbrush
 BugReports: https://github.com/jf15558/fossilbrush/issues
 NeedsCompilation: no
-Packaged: 2022-05-19 14:59:10 UTC; Joe
+Packaged: 2022-05-20 22:55:41 UTC; Joe
 Author: Joe Flannery-Sutherland [aut, cre]
     (<https://orcid.org/0000-0001-8232-6773>),
   Nussaïbah Raja-Schoob [aut, ctb],
@@ -37,4 +37,4 @@ Author: Joe Flannery-Sutherland [aut, cre]
   Wolfgang Kiessling [aut]
 Maintainer: Joe Flannery-Sutherland <jf15558@bristol.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-05-19 15:30:02 UTC
+Date/Publication: 2022-05-21 23:10:15 UTC

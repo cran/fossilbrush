@@ -14,9 +14,8 @@ sepkoski <- sepkoski[which(sepkoski$PHYLUM == "Brachiopoda"),]
 
 ## -----------------------------------------------------------------------------
 # update chronostratigraphy
-brachios <- GTS2020_scale(brachios, srt = "early_interval", end = "late_interval",
+brachios <- chrono_scale(brachios, srt = "early_interval", end = "late_interval",
                           max_ma = "max_ma", min_ma = "min_ma", verbose = FALSE)
-# brachios <- get_pbdb("Brachiopoda", interval = "Palaeozoic, tscale = "GTS2020")
 
 ## ---- results='markup', message=TRUE------------------------------------------
 # combine the datasets
@@ -25,8 +24,8 @@ occs <- cbind.data.frame(phylum = c(brachios$phylum, sepkoski$PHYLUM),
                          order = c(brachios$order, sepkoski$ORDER), 
                          family = c(brachios$family, rep(NA, nrow(sepkoski))),
                          genus = c(brachios$genus, sepkoski$GENUS),
-                         max_ma = c(brachios$GTS_FAD, sepkoski$RANGE_BASE),
-                         min_ma = c(brachios$GTS_LAD, sepkoski$RANGE_TOP),
+                         max_ma = c(brachios$newFAD, sepkoski$RANGE_BASE),
+                         min_ma = c(brachios$newLAD, sepkoski$RANGE_TOP),
                          coll_no = c(brachios$collection_no, rep(NA, nrow(sepkoski))))
 # define the taxonomic ranks used in the dataset (re-used elsewhere)
 b_ranks <- c("phylum", "class", "order", "family", "genus")

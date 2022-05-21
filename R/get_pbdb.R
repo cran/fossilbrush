@@ -82,10 +82,9 @@
 #' @import curl
 #' @importFrom utils data
 #' @importFrom data.table fread fwrite
-#' @export
 #' @examples
 #' # download Triassic dinosaurs (wait time set to meet CRAN example requirement)
-#' tdinos <- get_pbdb(taxon = "Dinosauria", interval = "Triassic", wait = 499)
+#' tdinos <- fossilbrush:::get_pbdb(taxon = "Dinosauria", interval = "Triassic", wait = 499)
 
 get_pbdb <- function(taxon = NULL, interval = NULL, mode = "occurrence", res = "all", fields = c("ident", "coords", "class"),
                      ex_taxon = NULL, area = NULL, ex_area = NULL, invert_area = FALSE, litho = NULL, invert_litho = FALSE,
