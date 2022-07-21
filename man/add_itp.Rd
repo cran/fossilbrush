@@ -4,7 +4,7 @@
 \alias{add_itp}
 \title{add_itp}
 \usage{
-add_itp(x, taxon, legend.pos = "topright")
+add_itp(x, taxon, legend.pos = "topright", exit = TRUE)
 }
 \arguments{
 \item{x}{The list output of @seealso threshold_ranges}
@@ -16,6 +16,10 @@ one of the taxon names in x to be plotted}
 bottomright, or a vector of length two, giving the xy
 coordinates of the legend. A convenience parameter so that
 the plot detail can remain unobscured.}
+
+\item{exit}{Restore base plotting parameters on function exit
+(default as a requirement for CRAN). Can be set to false to allow
+other elements to be aded to a plot}
 }
 \value{
 None, the detected peaks are added to an existing density plot
@@ -36,7 +40,7 @@ itp <- threshold_ranges(brachios, win = 8, thresh = 10,
                         rank = "genus", srt = "max_ma", end = "min_ma")
 # append the stratigraphically thresholded taxon names to the dataset
 # plot the taxon, now identifying the peaks
-plot_dprofile(dens, "Atrypa")
+plot_dprofile(dens, "Atrypa", exit = FALSE)
 add_itp(itp, "Atrypa")
 }
 \seealso{

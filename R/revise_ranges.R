@@ -90,6 +90,19 @@
 revise_ranges <- function(x, y, assemblage = "collection_no", srt = "max_ma", end = "min_ma", taxon = "genus",
                            err = NULL, do.flag = FALSE, prop = 0.75, allow.zero = TRUE, verbose = TRUE) {
 
+  # x = brachios_c
+  # y = sepkoski_c
+  # assemblage = "collection_no"
+  # srt = "max_ma"
+  # end = "min_ma"
+  # taxon = "genus"
+  # err = NULL
+  # do.flag = TRUE
+  # prop = 0.75
+  # allow.zero = TRUE
+  # verbose = TRUE
+
+
   if(!exists("x") | !exists("y")) {
     stop("Both x and y must be supplied")
   }

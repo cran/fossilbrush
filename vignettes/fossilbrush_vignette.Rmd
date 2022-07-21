@@ -1,7 +1,7 @@
 ---
-title: "Introduction to fossilbrush (v1.0.0), an R package for automated cleaning and error flagging of fossil occurrence data"
+title: "Introduction to fossilbrush (v1.0.3), an R package for automated cleaning and error flagging of fossil occurrence data"
 author: "Joe Flannery Sutherland"
-date: "17/03/2022"
+date: "21/07/2022"
 output: pdf_document
 vignette: >
   %\VignetteIndexEntry{fossilbrush_vignette}
@@ -146,9 +146,11 @@ We can see that the tails of the density profile for *Atrypa* are rather long, s
 pacm <- pacmacro_ranges(brachios_c, tail.flag = c(0.3, 0.35, 0.4),
                         rank = "genus", srt = "max_ma", end = "min_ma")
 # replot the taxon and mark its truncated ranges
-plot_dprofile(dens, "Atrypa")
+op <- par()
+plot_dprofile(dens, "Atrypa", exit = FALSE)
 abline(v = pacm$kdensity["Atrypa","FAD95"], col = "blue")
 abline(v = pacm$kdensity["Atrypa","LAD95"], col = "blue")
+on.exit(par(op))
 ```
 
 The analysis confirms that *Atrypa* shows a long-tailed stratigraphic density profile. For all the taxa with anomalously long tails, we can then reflag the database against the truncated ranges to identify the anomalous occurrences, appending the flag codes to the dataset. In this way, taxa with error flags (anything other than R1R) can be dropped from the dataset if desired or scrutinised for expert cleaning prior to analysis.
@@ -174,12 +176,12 @@ Another way to detect suspect data is to query the stratigrapic plausibility of 
 
 ```{r}
 # interpeak thresholding
-itp <- threshold_ranges(brachios_c, win = 8, thresh = 10,
+itp <- threshold_ranges(brachios_c, win = 10, thresh = 10,
                         rank = "genus", srt = "max_ma", end = "min_ma")
 # append the stratigraphically thresholded taxon names to the dataset
 brachios_c$newgen <- itp$data
 # plot the taxon, now identifying the peaks
-plot_dprofile(dens, "Atrypa")
+plot_dprofile(dens, "Atrypa", exit = FALSE)
 add_itp(itp, "Atrypa")
 ```
 

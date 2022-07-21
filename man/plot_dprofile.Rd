@@ -4,13 +4,17 @@
 \alias{plot_dprofile}
 \title{plot_dprofile}
 \usage{
-plot_dprofile(x, taxon)
+plot_dprofile(x, taxon, exit = TRUE)
 }
 \arguments{
 \item{x}{The list output of @seealso densify}
 
 \item{taxon}{A character vector of length one, specifying
 one of the taxon names in x to be plotted}
+
+\item{exit}{Restore base plotting parameters on function exit
+(default as a requirement for CRAN). Can be set to false to allow
+other elements to be aded to a plot}
 }
 \value{
 NULL, the plotted density profile

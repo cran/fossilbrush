@@ -87,9 +87,11 @@ plot_dprofile(dens, "Atrypa")
 pacm <- pacmacro_ranges(brachios_c, tail.flag = c(0.3, 0.35, 0.4),
                         rank = "genus", srt = "max_ma", end = "min_ma")
 # replot the taxon and mark its truncated ranges
-plot_dprofile(dens, "Atrypa")
+op <- par()
+plot_dprofile(dens, "Atrypa", exit = FALSE)
 abline(v = pacm$kdensity["Atrypa","FAD95"], col = "blue")
 abline(v = pacm$kdensity["Atrypa","LAD95"], col = "blue")
+on.exit(par(op))
 
 ## -----------------------------------------------------------------------------
 # extract the truncated ranges
@@ -107,11 +109,11 @@ brachios_c$pflag <- pflags$occurrence$status
 
 ## -----------------------------------------------------------------------------
 # interpeak thresholding
-itp <- threshold_ranges(brachios_c, win = 8, thresh = 10,
+itp <- threshold_ranges(brachios_c, win = 10, thresh = 10,
                         rank = "genus", srt = "max_ma", end = "min_ma")
 # append the stratigraphically thresholded taxon names to the dataset
 brachios_c$newgen <- itp$data
 # plot the taxon, now identifying the peaks
-plot_dprofile(dens, "Atrypa")
+plot_dprofile(dens, "Atrypa", exit = FALSE)
 add_itp(itp, "Atrypa")
 
