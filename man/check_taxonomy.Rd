@@ -44,11 +44,13 @@ rank}
 \item{species}{A logical indicating if x contains a species
 column. As the data must be supplied in hierarchical order,
 this column will naturally be the last column in x and
-species-specific spell checks will be performed on this column.}
+species-specific spell checks will be performed on this column.
+NOTE that for the function to work, the species name must be the
+full species name rather than just the specific epithet, e.g.,
+'Tyto_alba' rather than just 'alba'.}
 
 \item{species_sep}{A character vector of length one specifying
-the genus name and specific epithet in the species column, if
-present
+the genus name and specific epithet in the species column
 \itemize{
 \item Flagging routine arguments *
 }}

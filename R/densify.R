@@ -45,7 +45,6 @@
 #' # densify ranges
 #' dens <- densify(brachios)
 
-
 densify <- function(x, rank = "genus", srt = "max_ma", end = "min_ma", step = 1, density = 0.1,
                     method = c("histogram", "kernel"), ..., verbose = TRUE) {
 
@@ -121,7 +120,8 @@ densify <- function(x, rank = "genus", srt = "max_ma", end = "min_ma", step = 1,
   test <- pbsapply(to_do, simplify = FALSE, function(y) {
 
     # get all occurrences of the taxon (uses data.table)
-    upr <- x[.(y), c("max_ma", "min_ma")]
+    upr <- x[.(y)]
+    upr <- upr[,c("max_ma", "min_ma")]
     # sequence from each FAD-LAD pair by density
     upr <- as.vector(unlist(apply(upr, 1, function(z) {seq(from = z[1], to = z[2], by = -density)})))
     # set the bins for the density calculation

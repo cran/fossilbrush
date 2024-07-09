@@ -1,6 +1,6 @@
 Package: fossilbrush
 Title: Automated Cleaning of Fossil Occurrence Data
-Version: 1.0.3
+Version: 1.0.5
 Authors@R: 
     c(person(given = "Joe",
              family = "Flannery-Sutherland",
@@ -20,16 +20,16 @@ Description: Functions to automate the detection and resolution of taxonomic and
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
 Depends: R (>= 2.10)
-Imports: igraph, curl, data.table, pbapply, stringdist, stringr,
-        Matrix, methods
+Imports: igraph, data.table, pbapply, stringdist, stringr, Matrix,
+        methods
 Suggests: rmarkdown, knitr
 VignetteBuilder: knitr
 URL: https://cran.r-project.org/package=fossilbrush
 BugReports: https://cran.r-project.org/package=fossilbrush
 NeedsCompilation: no
-Packaged: 2022-07-21 14:50:11 UTC; Joe
+Packaged: 2024-07-09 21:14:35 UTC; Joe FS
 Author: Joe Flannery-Sutherland [aut, cre]
     (<https://orcid.org/0000-0001-8232-6773>),
   Nussaïbah Raja-Schoob [aut, ctb],
@@ -37,4 +37,4 @@ Author: Joe Flannery-Sutherland [aut, cre]
   Wolfgang Kiessling [aut]
 Maintainer: Joe Flannery-Sutherland <jf15558@bristol.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-07-21 15:50:02 UTC
+Date/Publication: 2024-07-09 21:40:02 UTC

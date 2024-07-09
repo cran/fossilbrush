@@ -17,15 +17,15 @@ sepkoski <- sepkoski[which(sepkoski$PHYLUM == "Brachiopoda"),]
 brachios <- chrono_scale(brachios, srt = "early_interval", end = "late_interval",
                           max_ma = "max_ma", min_ma = "min_ma", verbose = FALSE)
 
-## ---- results='markup', message=TRUE------------------------------------------
+## ----results='markup', message=TRUE-------------------------------------------
 # combine the datasets
 occs <- cbind.data.frame(phylum = c(brachios$phylum, sepkoski$PHYLUM),
                          class = c(brachios$class, sepkoski$CLASS),
                          order = c(brachios$order, sepkoski$ORDER), 
                          family = c(brachios$family, rep(NA, nrow(sepkoski))),
                          genus = c(brachios$genus, sepkoski$GENUS),
-                         max_ma = c(brachios$newFAD, sepkoski$RANGE_BASE),
-                         min_ma = c(brachios$newLAD, sepkoski$RANGE_TOP),
+                         max_ma = c(brachios$max_ma, sepkoski$RANGE_BASE),
+                         min_ma = c(brachios$min_ma, sepkoski$RANGE_TOP),
                          coll_no = c(brachios$collection_no, rep(NA, nrow(sepkoski))))
 # define the taxonomic ranks used in the dataset (re-used elsewhere)
 b_ranks <- c("phylum", "class", "order", "family", "genus")

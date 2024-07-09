@@ -6,7 +6,7 @@
 \usage{
 chrono_scale(
   x,
-  tscale = "GTS2020",
+  tscale = "GTS_2020",
   srt = "early_interval",
   end = "late_interval",
   max_ma = NULL,
@@ -59,7 +59,7 @@ to fossil datasets. The function relies on a lookup table
 generated based on the named intervals in the PBDB in early
 2021. First and last interval names in the supplied dataset
 are matched against this lookup table, by default using
-'get("GTS2020)", to get GTS2020 numeric ages. If the
+'get("GTS_2020)", to get GTS_2020 numeric ages. If the
 dataset contains intervals which are not present in the
 lookup table, they will not be matched and the user will
 be warned. To get around this possibility, the user can
@@ -70,7 +70,7 @@ that the returned vectors of numeric ages do not contain NAs.
 \examples{
 # example dataset
 data("brachios")
-# add GTS 2020 dates
+# add GTS_2020 dates
 brachios <- chrono_scale(brachios, srt = "early_interval", end = "late_interval",
                           max_ma = "max_ma", min_ma = "min_ma")
 }

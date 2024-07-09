@@ -192,12 +192,9 @@ spell_check <- function(x, terms = NULL, groups = NULL, jw = 0.1, str = 1, str2 
       else {
         # retrieve names
         flag <- cbind(ob[flag[,1]], ob[flag[,2]], y)
-        # cull equivalent matches
-        tx <- unique(c(flag[,1], flag[,2]))
-        tx1 <- match(flag[,1], tx)
-        tx2 <- match(flag[,2], tx)
-        txs <- tx1 + tx2
-        flag <- flag[!duplicated(txs), , drop = FALSE]
+        # drop equivalent rows (xy, yx pairs)
+        eq <- duplicated(t(apply(flag, 1, function(z) {paste0(z[order(z)])})))
+        flag <- flag[!eq,,drop = FALSE]
         # cull by first y letter non-matches
         if(!is.null(str)) {
           c1 <- substr(flag[,1], start = 1, stop = str)

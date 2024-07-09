@@ -17,7 +17,7 @@
 #' @return None, the detected peaks are added to an existing density plot
 #' @export
 #' @examples
-#' # load dataset
+#' # load dataset#
 #' data("brachios")
 #' # subsample brachios to make for a short example runtime
 #' set.seed(1)

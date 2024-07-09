@@ -5,7 +5,7 @@
 #' generated based on the named intervals in the PBDB in early
 #' 2021. First and last interval names in the supplied dataset
 #' are matched against this lookup table, by default using
-#' 'get("GTS2020)", to get GTS2020 numeric ages. If the
+#' 'get("GTS_2020)", to get GTS_2020 numeric ages. If the
 #' dataset contains intervals which are not present in the
 #' lookup table, they will not be matched and the user will
 #' be warned. To get around this possibility, the user can
@@ -45,11 +45,11 @@
 #' @examples
 #' # example dataset
 #' data("brachios")
-#' # add GTS 2020 dates
+#' # add GTS_2020 dates
 #' brachios <- chrono_scale(brachios, srt = "early_interval", end = "late_interval",
 #'                           max_ma = "max_ma", min_ma = "min_ma")
 
-chrono_scale <- function(x, tscale = "GTS2020", srt = "early_interval", end = "late_interval", max_ma = NULL, min_ma = NULL, verbose = TRUE) {
+chrono_scale <- function(x, tscale = "GTS_2020", srt = "early_interval", end = "late_interval", max_ma = NULL, min_ma = NULL, verbose = TRUE) {
 
   if(!exists("x")) {
     stop("Please supply x as a dataframe containing, minimally, the first and last interval ages of PBDB data")
@@ -61,10 +61,11 @@ chrono_scale <- function(x, tscale = "GTS2020", srt = "early_interval", end = "l
     if(length(tscale) != 1) {
       stop("Only a single chronostratigraphic dataset name should be supplied")
     }
-    if(!tscale %in% c("GTS2020")) {
+    if(!tscale %in% c("GTS_2020")) {
       stop("tscale is not a valid chronostratigraphic dataset name")
     }
-    tscale <- get(tscale)
+    if(tscale == "GTS_2020") {tscale <- fossilbrush::GTS_2020}
+
   } else if(is.data.frame(tscale)) {
     if(ncol(tscale) < 3) {
       stop("If supplying a dataframe, this must contain Interval, FAD and LAD columns")
@@ -150,7 +151,7 @@ chrono_scale <- function(x, tscale = "GTS2020", srt = "early_interval", end = "l
   test <- unique(c(xfad, xlad))
   test <- test[!test %in% tscale[,cinterval]]
   if(length(test) > 0) {
-    if(verbose) {warning(paste0("The following intervals are not present in the GTS2020 lookup: ", paste0(test, collapse = ", "), ". If max_ma and min_ma have been supplied, these values will be supplied for the unmatched intervals as defaults. Otherwise, NA will be returned for these intervals"))}
+    if(verbose) {warning(paste0("The following intervals are not present in the GTS_2020 lookup: ", paste0(test, collapse = ", "), ". If max_ma and min_ma have been supplied, these values will be supplied for the unmatched intervals as defaults. Otherwise, NA will be returned for these intervals"))}
   }
 
   new_fad <- tscale[match(xfad, tscale[,cinterval]), cfad]
@@ -159,7 +160,13 @@ chrono_scale <- function(x, tscale = "GTS2020", srt = "early_interval", end = "l
     new_fad[is.na(new_fad)] <- xerl[is.na(new_fad)]
     new_lad[is.na(new_lad)] <- xlte[is.na(new_lad)]
   }
-  x$newFAD <- new_fad
-  x$newLAD <- new_lad
+
+  # ensure that the returned ages are the right way around
+  news <- cbind(new_fad, new_lad)
+  newFad <- apply(news, 1, function(x) {if(all(is.na(x))) {return(NA)} else {return(max(x))}})
+  newLad <- apply(news, 1, function(x) {if(all(is.na(x))) {return(NA)} else {return(min(x))}})
+
+  x$newFAD <- newFad
+  x$newLAD <- newLad
   return(x)
 }
