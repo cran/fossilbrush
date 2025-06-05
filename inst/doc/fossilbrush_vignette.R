@@ -24,8 +24,8 @@ occs <- cbind.data.frame(phylum = c(brachios$phylum, sepkoski$PHYLUM),
                          order = c(brachios$order, sepkoski$ORDER), 
                          family = c(brachios$family, rep(NA, nrow(sepkoski))),
                          genus = c(brachios$genus, sepkoski$GENUS),
-                         max_ma = c(brachios$max_ma, sepkoski$RANGE_BASE),
-                         min_ma = c(brachios$min_ma, sepkoski$RANGE_TOP),
+                         max_ma = c(brachios$newFAD, sepkoski$RANGE_BASE),
+                         min_ma = c(brachios$newLAD, sepkoski$RANGE_TOP),
                          coll_no = c(brachios$collection_no, rep(NA, nrow(sepkoski))))
 # define the taxonomic ranks used in the dataset (re-used elsewhere)
 b_ranks <- c("phylum", "class", "order", "family", "genus")

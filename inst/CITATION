@@ -1,12 +1,10 @@
-citHeader("To cite fossilbrush in publications use:")
-
 bibentry(
   bibtype  = "Article",
-  title    = "fossilbrush: an R package for automated detection and resolution of anomalies in palaeontological occurrence data",
-  author   = "Flannery-Sutherland et al.",
+  title    = "fossilbrush: An R package for automated detection and resolution of anomalies in palaeontological occurrence data",
+  author   = "Joseph T. Flannery-Sutherland, Nussaïbah B. Raja, Ádám T. Kocsis, Wolfgang Kiessling",
   journal  = "Methods in Ecology and Evolution",
   year     = "2022",
-  volume   = 13,
-  number   = 11,
-  pages    = 2404-2418
+  volume   = "13",
+  pages    = "2404-2418",
+  doi      = "10.1111/2041-210X.13966"
 )

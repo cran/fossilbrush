@@ -5,12 +5,12 @@
 \alias{GTS_2020}
 \title{GTS_2020}
 \format{
-An object of class \code{data.frame} with 1534 rows and 9 columns.
+An object of class \code{data.frame} with 1534 rows and 10 columns.
 }
 \usage{
 GTS_2020
 }
 \description{
-lookup table called by 'chrono_scale'
+lookup table called by 'get_pbdb'
 }
 \keyword{datasets}

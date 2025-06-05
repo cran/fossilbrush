@@ -173,6 +173,10 @@ check_taxonomy <- function (x, ranks = c("phylum", "class", "order", "family", "
   # jump = 3
   # plot = FALSE
 
+
+
+
+
   if (!exists("x")) {
     stop("Please supply x as a dataframe of taxonomic assignments")
   }
